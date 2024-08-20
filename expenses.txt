@@ -1,0 +1,4 @@
+Sun Aug 18 15:12:05 IST 2024,111.0,Bill,Bill
+Sun Aug 18 15:12:26 IST 2024,150.0,Food,Burger King
+Mon Aug 19 23:35:24 IST 2024,120.0,Rent,house
+Mon Aug 19 23:35:39 IST 2024,23.0,Food,KFC fried chicken
