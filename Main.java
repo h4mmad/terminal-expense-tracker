@@ -1,5 +1,6 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
-
 
 public class Main{
 
@@ -7,9 +8,12 @@ public class Main{
         Scanner scanner = new Scanner(System.in);
         FileHandler fileHandler = new FileHandler();
         int option = 0;
-        
+        String startDate;
+        String endDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
         FileHandler.setFileMenuLoop(fileHandler, scanner);
-        
+
         do{
                 Menu.displayMainMenu(); // displays the main menu
                 option = Menu.getIntValue(scanner);
@@ -29,7 +33,25 @@ public class Main{
                     fileHandler.readExpenseFromFile(fileHandler);
                     break;
                 case 3:
-                    ExpenseReport.loadExpensesFromFile(fileHandler.getFileName());
+                    // If there's a nextInt(), nextDouble(), or any other nextXxx() method before nextLine()
+                    // use an extra scanner.nextLine(); to consume the newline character.
+                    
+                    scanner.nextLine();
+                    try {
+                        do{
+                            System.out.print("Please enter start date (dd-MM-yyyy):");
+                            startDate = scanner.nextLine();
+
+                            System.out.print("Please enter end date (dd-MM-yyyy):");
+                            endDate = scanner.nextLine();
+                        }while(!ExpenseReport.isStartDateValid(dateFormat.parse(startDate), dateFormat.parse(endDate)));
+                        ExpenseReport.loadExpensesFromFile(fileHandler.getFileName(), dateFormat.parse(startDate), dateFormat.parse(endDate));
+
+                    } catch (ParseException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    
                     System.out.println(ExpenseReport.getExpenseMap().entrySet());
                     break;
                 default:
@@ -37,12 +59,8 @@ public class Main{
             }
         }while(option != 4);
 
-
         scanner.close();
     }
-
-    
-    
 }
 
 

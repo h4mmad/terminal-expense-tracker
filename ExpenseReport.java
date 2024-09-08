@@ -23,12 +23,37 @@ public class ExpenseReport {
     }
 
     public void setStartAndEndDate(Date start, Date end){
+        //dd-MM-yyyy
         startDate = start;
         endDate = end;
     }
 
+    public void filterByStartAndEndDate(){
 
-    public static void loadExpensesFromFile(String fileName) {
+    }
+
+    public static boolean isStartDateValid(Date startDate, Date endDate){
+
+        int val = startDate.compareTo(endDate);
+
+        if(val > 0){
+            System.out.println("Error: Start date cannot occur after end date");
+            return false;
+        }
+        else
+            return true;
+    }
+
+    public static void loadExpensesFromFile(String fileName, Date startDate, Date endDate) {
+        System.out.println("-------------------------");
+        System.out.println("The start date is: " + startDate);
+        System.out.println("-------------------------");
+        System.out.println("The end date is: " + endDate);
+        System.out.println("-------------------------");
+
+        
+
+
         try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
             lines.forEach(line -> {
                 String[] parts = line.split(",");
@@ -48,5 +73,4 @@ public class ExpenseReport {
             System.out.println("Error reading file: " + e.getMessage());
         }
     }
-
 }

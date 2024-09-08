@@ -9,9 +9,7 @@ public class Menu {
                 "1. Add Expense\n" +
                 "2. View Expenses\n" +
                 "3. Generate Report\n" +
-                "4. Exit\n");
-        
-        System.out.print("Choose and option: ");
+                "4. Exit\n");        
     }
 
     public static void displayExpenseTypeMenu() {
@@ -25,7 +23,6 @@ public class Menu {
                 "5. Clothing\n" +
                 "6. Other\n"
         );
-        System.out.print("Choose and option: ");
     }    
 
     public static int getIntValue(Scanner scanner) {
