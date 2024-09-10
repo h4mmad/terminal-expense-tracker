@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 public class Main{
 
@@ -11,6 +12,7 @@ public class Main{
         String startDate;
         String endDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         FileHandler.setFileMenuLoop(fileHandler, scanner);
 
