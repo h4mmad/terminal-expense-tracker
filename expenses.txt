@@ -3,3 +3,5 @@ Sun Aug 18 15:12:26 IST 2024,150.0,Food,Burger King
 Mon Aug 19 23:35:24 IST 2024,120.0,Rent,house
 Mon Aug 19 23:35:39 IST 2024,23.0,Food,KFC fried chicken
 Mon Sep 09 01:00:00 SGT 2024,14.57,Food,Nasi Kandar Ikan Goreng
+Thu Sep 12 00:01:13 SGT 2024,20.99,Food,Subway
+Thu Sep 12 00:11:01 SGT 2024,16.0,Food,Nasi Kandar Sotong Pelita

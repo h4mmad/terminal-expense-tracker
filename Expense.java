@@ -115,6 +115,7 @@ public class Expense{
 
         System.out.print("Enter description: ");
         expense.setDescription(scanner.nextLine());
+        
         expense.setDate(new Date());
 
         return expense;

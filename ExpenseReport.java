@@ -18,7 +18,7 @@ public class ExpenseReport {
     
     private static Map<ExpenseType, Double> expenseMap = new EnumMap<>(ExpenseType.class);
 
-    public static  Map<ExpenseType, Double> getExpenseMap(){
+    public static Map<ExpenseType, Double> getExpenseMap(){
         return expenseMap;
     }
 
@@ -30,10 +30,6 @@ public class ExpenseReport {
         //dd-MM-yyyy
         startDate = start;
         endDate = end;
-    }
-
-    public void filterByStartAndEndDate(){
-
     }
 
     // Method to check if the start date is valid (i.e., it is not after the end date)
@@ -73,20 +69,26 @@ public class ExpenseReport {
     SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
     dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+            System.out.println("-----------------------------------------------");
+            System.out.println("Expense report " + startDate + " to " + endDate);
+            System.out.println("-----------------------------------------------");
+            expenseMap.clear();
             lines.forEach(line -> {
                 String[] parts = line.split(",");
                 if (parts.length >= 4) {
                     try {
                         Date expenseDate = dateFormat.parse(parts[0]);
                         
-                        if(startDate.equals(expenseDate) || startDate.before(expenseDate) && endDate.equals(expenseDate) || endDate.after(expenseDate)){
-                            
-                            System.out.println(line);
-                            Double amount = Double.parseDouble(parts[1]);
-                            ExpenseType type = ExpenseType.valueOf(parts[2]);
-    
-                            // Sum the amounts for each ExpenseType
-                            expenseMap.merge(type, amount, Double::sum);
+                        if(startDate.equals(expenseDate) || startDate.before(expenseDate)){
+                            if(endDate.equals(expenseDate) || endDate.after(expenseDate)){
+                                
+                                System.out.println(line);
+                                Double amount = Double.parseDouble(parts[1]);
+                                ExpenseType type = ExpenseType.valueOf(parts[2]);
+                                
+                                // Sum the amounts for each ExpenseType
+                                expenseMap.merge(type, amount, Double::sum);
+                            }
                         }
 
                        
